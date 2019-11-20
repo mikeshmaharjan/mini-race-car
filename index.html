@@ -14,15 +14,21 @@
     <div class="container">
         <div class="row m-2">
             <div class="col-sm"> </div>
-            <div class="col-sm text-center"><button class="btn btn-primary">E</button>
+            <div class="col-sm text-center">
+                <button class="btn btn-primary" onmousedown="action('e')">E</button>
             </div>
             <div class="col-sm"> </div>
         </div>
-        <div class="row">
+        <div class="row m-2">
             <div class="col-sm text-center">
-                <button class="btn btn-primary">S</button>
-                <button class="btn btn-primary">D</button>
-                <button class="btn btn-primary">F</button>
+                <button class="btn btn-primary" onmousedown="action('s')">S</button>
+                <button class="btn btn-primary" onmousedown="action('d')">D</button>
+                <button class="btn btn-primary" onmousedown="action('f')">F</button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-sm text-center">
+                <button class="btn btn-primary" onmousedown="spin()">Spin</button>
             </div>
         </div>
     </div>
@@ -54,20 +60,15 @@
             stop();
         }, false);
 
+        document.addEventListener('mouseup', (event) => {
+            stop();
+        }, false);
+
         document.addEventListener('keydown', (event) => {
-            const keyName = event.key;
+            action(event.key);
+        }, false);
 
-            if (keyName === 'Control') {
-                return;
-            }
-
-            if (event.ctrlKey) {
-                // console.log(`Combination of ctrlKey + ${keyName}`);
-            } else {
-                // console.log(`Key pressed ${keyName}`);
-            }
-
-
+        function action(keyName) {
             if (currentDirection !== keyName) {
                 switch (keyName) {
                     case KEY_UP:
@@ -86,11 +87,11 @@
             }
 
             currentDirection = keyName
-        }, false);
+        }
 
 
         function goForward() {
-            fetch(`${BASE_URL}/go`);
+            fetch(`${BASE_URL}/go`, { mode: 'cors' });
         }
 
         function goBackward() {
@@ -108,6 +109,10 @@
 
         function goLeft() {
             fetch(`${BASE_URL}/left`)
+        }
+
+        function spin() {
+            fetch(`${BASE_URL}/spin`)
         }
 
         function reset() {
