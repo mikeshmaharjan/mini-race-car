@@ -1,12 +1,14 @@
 {
   "name": "race-car-interface",
   "version": "1.0.0",
-  "description": "'''",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^4.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
