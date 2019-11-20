@@ -22,20 +22,20 @@
         <div class="row m-2">
             <div class="col-sm"> </div>
             <div class="col-sm text-center">
-                <button class="btn btn-primary" onmousedown="action('e')">E</button>
+                <button class="btn btn-primary" touchstart="action('e')" onmousedown="action('e')">E</button>
             </div>
             <div class="col-sm"> </div>
         </div>
         <div class="row m-2">
             <div class="col-sm text-center">
-                <button class="btn btn-primary" onmousedown="action('s')">S</button>
-                <button class="btn btn-primary" onmousedown="action('d')">D</button>
-                <button class="btn btn-primary" onmousedown="action('f')">F</button>
+                <button class="btn btn-primary" touchstart="action('s')"  onmousedown="action('s')">S</button>
+                <button class="btn btn-primary" touchstart="action('d')"  onmousedown="action('d')">D</button>
+                <button class="btn btn-primary" touchstart="action('f')"  onmousedown="action('f')">F</button>
             </div>
         </div>
         <div class="row m-2">
             <div class="col-sm text-center">
-                <button class="btn btn-primary" onmousedown="spin()">Spin</button>
+                <button class="btn btn-primary" touchstart="spin()" onmousedown="spin()">Spin</button>
             </div>
         </div>
     </div>
@@ -68,6 +68,10 @@
         }, false);
 
         document.addEventListener('mouseup', (event) => {
+            stop();
+        }, false);
+
+        document.addEventListener('touchend', (event) => {
             stop();
         }, false);
 
