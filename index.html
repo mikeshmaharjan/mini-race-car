@@ -22,20 +22,22 @@
         <div class="row m-2">
             <div class="col-sm"> </div>
             <div class="col-sm text-center">
-                <button class="btn btn-primary" touchstart="action('e')" onmousedown="action('e')">E</button>
+                <button class="btn btn-primary" mousedown="action('w')" onmousedown="action('w')">W</button>
+                <button class="btn btn-primary" mousedown="action('e')" onmousedown="action('e')">E</button>
+                <button class="btn btn-primary" mousedown="action('r')" onmousedown="action('r')">R</button>
             </div>
             <div class="col-sm"> </div>
         </div>
         <div class="row m-2">
             <div class="col-sm text-center">
-                <button class="btn btn-primary" touchstart="action('s')"  onmousedown="action('s')">S</button>
-                <button class="btn btn-primary" touchstart="action('d')"  onmousedown="action('d')">D</button>
-                <button class="btn btn-primary" touchstart="action('f')"  onmousedown="action('f')">F</button>
+                <button class="btn btn-primary" mousedown="action('s')"  onmousedown="action('s')">S</button>
+                <button class="btn btn-primary" mousedown="action('d')"  onmousedown="action('d')">D</button>
+                <button class="btn btn-primary" mousedown="action('f')"  onmousedown="action('f')">F</button>
             </div>
         </div>
         <div class="row m-2">
             <div class="col-sm text-center">
-                <button class="btn btn-primary" touchstart="spin()" onmousedown="spin()">Spin</button>
+                <button class="btn btn-primary" mousedown="stop()" onmousedown="stop()">STOP</button>
             </div>
         </div>
     </div>
@@ -60,6 +62,8 @@
         const KEY_DOWN = 'd';
         const KEY_LEFT = 's';
         const KEY_RIGHT = 'f';
+        const KEY_SPIN_LEFT = 'w';
+        const KEY_SPIN_RIGHT = 'r';
 
         let currentDirection = '';
 
@@ -94,6 +98,12 @@
                     case KEY_RIGHT:
                         goRight();
                         break;
+                    case KEY_SPIN_LEFT:
+                        spinLeft();
+                        break;
+                    case KEY_SPIN_RIGHT:
+                        spinRight();
+                        break;
                 }
             }
 
@@ -122,8 +132,12 @@
             fetch(`${BASE_URL}/left`)
         }
 
-        function spin() {
-            fetch(`${BASE_URL}/spin`)
+        function spinLeft() {
+            fetch(`${BASE_URL}/spinLeft`)
+        }
+
+        function spinRight() {
+            fetch(`${BASE_URL}/spinRight`)
         }
 
         function reset() {
