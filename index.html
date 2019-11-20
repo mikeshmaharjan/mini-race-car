@@ -12,10 +12,18 @@
 <body>
 
     <div class="container">
+        <div class="row m-2">
+            <div class="col-sm"> </div>
+            <div class="col-sm text-center"><button class="btn btn-primary">E</button>
+            </div>
+            <div class="col-sm"> </div>
+        </div>
         <div class="row">
-            <button class="btn btn-primary" onclick="goForward()">Fordward</button>
-            <button class="btn btn-primary" onclick="goBackward()">backward</button>
-            <button class="btn btn-primary" onclick="stop()">stop</button>
+            <div class="col-sm text-center">
+                <button class="btn btn-primary">S</button>
+                <button class="btn btn-primary">D</button>
+                <button class="btn btn-primary">F</button>
+            </div>
         </div>
     </div>
 
@@ -33,17 +41,17 @@
 
     <script>
 
-        const KEY_LEFT = 's';
-        const KEY_RIGHT = 'f';
+        const BASE_URL = 'http://192.168.4.1'
+
         const KEY_UP = 'e';
         const KEY_DOWN = 'd';
+        const KEY_LEFT = 's';
+        const KEY_RIGHT = 'f';
 
         let currentDirection = '';
 
         document.addEventListener('keyup', (event) => {
-
             stop();
-
         }, false);
 
         document.addEventListener('keydown', (event) => {
@@ -76,40 +84,35 @@
                         break;
                 }
             }
-            currentDirection = keyName
 
+            currentDirection = keyName
         }, false);
 
 
         function goForward() {
-            fetch("http://192.168.4.1/go")
-                .then(function () { })
-                .catch(function () { });
+            fetch(`${BASE_URL}/go`);
         }
 
         function goBackward() {
-            fetch("http://192.168.4.1/back")
-                .then(function () { })
-                .catch(function () { });
+            fetch(`${BASE_URL}/back`);
         }
 
         function stop() {
-
             currentDirection = '';
-            fetch("http://192.168.4.1/stop")
-                .then(function () { })
-                .catch(function () { });
+            fetch("http://192.168.4.1/stop");
         }
-
 
         function goRight() {
-            console.log('go right');
+            fetch(`${BASE_URL}/right`)
         }
+
         function goLeft() {
-            console.log('go left');
+            fetch(`${BASE_URL}/left`)
         }
 
-
+        function reset() {
+            currentDirection = '';
+        }
     </script>
 </body>
 
