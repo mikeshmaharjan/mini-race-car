@@ -68,7 +68,11 @@
         let currentDirection = '';
 
         document.addEventListener('keyup', (event) => {
-            stop();
+            if (currentDirection !== KEY_LEFT && currentDirection !== KEY_RIGHT) {
+                stop();
+            } else {
+                action('e')
+            }
         }, false);
 
         document.addEventListener('mouseup', (event) => {
